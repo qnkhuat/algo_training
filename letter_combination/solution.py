@@ -1,18 +1,20 @@
 class Solution(object):
     buttons = {
-        '2' : ['a', 'b', 'c'],
-        '3' : ['d', 'e', 'f'],
-        '4' : ['g', 'h', 'i'],
-        '5' : ['j', 'k', 'l'],
-        '6' : ['m', 'n', 'o'],
-        '7' : ['p', 'q', 'r', 's'],
-        '8' : ['t', 'u', 'v'],
-        '9' : ['w', 'x', 'y', 'z']
-    }
+            '2' : ['a', 'b', 'c'],
+            '3' : ['d', 'e', 'f'],
+            '4' : ['g', 'h', 'i'],
+            '5' : ['j', 'k', 'l'],
+            '6' : ['m', 'n', 'o'],
+            '7' : ['p', 'q', 'r', 's'],
+            '8' : ['t', 'u', 'v'],
+            '9' : ['w', 'x', 'y', 'z']
+            }
 
     def comb(self, l, acc):
-        if len(l) == 0: return acc
-        elif len(l) == 1: return self.buttons[l[0]]
+        if len(l) == 0: 
+            return acc
+        elif len(l) == 1 : 
+            return self.buttons[l[0]]
         else:
             first_digit = l[0]
             digits = self.buttons[first_digit]
@@ -22,7 +24,7 @@ class Solution(object):
                 for d_p in prev_comb:
                     result.append( d + d_p )
             return result
-            
+
     def letterCombinations(self, digits):
         """
         :type digits: str
@@ -30,4 +32,10 @@ class Solution(object):
         """
         return self.comb(digits, [])
 
-print(Solution().letterCombinations("2"))
+def test(case, result):
+    output = Solution().letterCombinations(case)
+    print(f"case: {case}, {set(output) == set(result)}")
+
+test("23", ["ad","ae","af","bd","be","bf","cd","ce","cf"])
+test("", [])
+test("2", ['a', 'b', 'c'])
