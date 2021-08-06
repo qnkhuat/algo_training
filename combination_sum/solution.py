@@ -9,6 +9,9 @@
 # Constraints: 
 # Goal: sum(comb) = target
 
+
+# time : 74%
+# mem : 50%
 class Solution(object):
     def dfs(self, candidates, target, result, comb=[]):
         if target == 0: 
@@ -27,6 +30,22 @@ class Solution(object):
         self.dfs(candidates, target, result)
         return result
 
+
+## Better solution 
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        ret = []
+        self.dfs(candidates, target, [], ret)
+        return ret
+    
+    def dfs(self, nums, target, path, ret):
+        if target < 0:
+            return 
+        if target == 0:
+            ret.append(path)
+            return 
+        for i in range(len(nums)):
+            self.dfs(nums[i:], target-nums[i], path+[nums[i]], ret)
 
 def test(args, expect):
     output = Solution().combinationSum(*args)
