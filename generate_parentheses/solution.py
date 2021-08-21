@@ -11,7 +11,7 @@ class Solution:
         if not n:
             return []
         left, right, ans = n, n, []
-        self.dfs(left,right, ans, "")
+        self.dfs(left, right, ans, "")
         return ans
 
     def dfs(self, left, right, ans, string):
